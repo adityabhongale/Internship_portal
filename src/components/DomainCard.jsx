@@ -10,10 +10,10 @@ const DomainCard = ({ icon, title, description, className = '' }) => (
                 </svg>
             )}
         </div>
-        <h3 className="text-xl font-semibold text-indigo-600 mb-2">
+        <h3 className="text-lg font-semibold text-indigo-600 mb-2">
             {title}
         </h3>
-        <p className="text-gray-600">
+        <p className="text-gray-600 text-sm">
             {description}
         </p>
     </div>
