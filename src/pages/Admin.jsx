@@ -1,7 +1,23 @@
 
 import React, { useState } from 'react';
+import whiteLogo from '../assets/white-logo.png';
+
+// Animated floating elements for background
+const FloatingElement = ({ delay = 0, size = "w-64 h-64", position = "top-1/4 left-1/4" }) => (
+    <div 
+        className={`absolute ${position} ${size} rounded-full opacity-10 animate-pulse`}
+        style={{
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            animationDelay: `${delay}s`,
+            animationDuration: '4s'
+        }}
+    />
+);
 
 const Admin = () => {
+    const [activeSection, setActiveSection] = useState('dashboard');
+    const [sidebarOpen, setSidebarOpen] = useState(false);
+    
     const [applications, setApplications] = useState([
         {
             id: 'APP-001',
@@ -63,7 +79,6 @@ const Admin = () => {
             status: 'To Do',
         }
     ]);
-    const [activeSection, setActiveSection] = useState('dashboard');
     const [showDetailsModal, setShowDetailsModal] = useState(false);
     const [selectedApplication, setSelectedApplication] = useState(null);
     const [showAddTaskModal, setShowAddTaskModal] = useState(false);
@@ -134,117 +149,199 @@ const Admin = () => {
     };
 
     return (
-        <div className="min-h-screen flex bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 font-sans text-gray-800 antialiased">
-            {/* Sidebar Navigation */}
-            <aside className="w-72 bg-white/30 backdrop-blur-2xl shadow-2xl p-8 flex-col justify-between rounded-r-3xl border-r border-white/30 hidden md:flex transition-all duration-300">
-                <div className="flex-1 flex flex-col justify-between h-full">
-                    <div>
-                        <div className="text-3xl font-extrabold text-blue-700 mb-10 tracking-tight drop-shadow-sm">Sarg Softech</div>
-                        <nav className="space-y-2">
-                            <a href="#" onClick={() => setActiveSection('dashboard')} className={`nav-link flex items-center space-x-3 p-3 rounded-xl transition-all duration-200 hover:bg-blue-100/60 hover:shadow ${activeSection === 'dashboard' ? 'bg-blue-100/80 text-blue-700 font-bold shadow' : 'text-gray-700'}`}> 
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" /></svg>
-                                <span>Dashboard</span>
-                            </a>
-                            <a href="#" onClick={() => setActiveSection('tasks')} className={`nav-link flex items-center space-x-3 p-3 rounded-xl transition-all duration-200 hover:bg-blue-100/60 hover:shadow ${activeSection === 'tasks' ? 'bg-blue-100/80 text-blue-700 font-bold shadow' : 'text-gray-700'}`}> 
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M17 16h.01" /></svg>
-                                <span>Tasks</span>
-                            </a>
-                            <a href="#" onClick={() => setActiveSection('users')} className={`nav-link flex items-center space-x-3 p-3 rounded-xl transition-all duration-200 hover:bg-blue-100/60 hover:shadow ${activeSection === 'users' ? 'bg-blue-100/80 text-blue-700 font-bold shadow' : 'text-gray-700'}`}> 
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
-                                <span>Users</span>
-                            </a>
-                            <a href="#" onClick={() => setActiveSection('settings')} className={`nav-link flex items-center space-x-3 p-3 rounded-xl transition-all duration-200 hover:bg-blue-100/60 hover:shadow ${activeSection === 'settings' ? 'bg-blue-100/80 text-blue-700 font-bold shadow' : 'text-gray-700'}`}> 
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.82 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.82 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.82-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.82-3.31 2.37-2.37.996.608 2.22 1.34 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                                <span>Settings</span>
-                            </a>
-                        </nav>
+        <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
+            {/* Animated floating background elements - responsive sizes */}
+            <div className="hidden lg:block">
+                <FloatingElement delay={0} size="w-96 h-96" position="top-10 -left-48" />
+                <FloatingElement delay={1} size="w-80 h-80" position="top-1/3 -right-40" />
+                <FloatingElement delay={2} size="w-64 h-64" position="bottom-1/4 left-1/4" />
+                <FloatingElement delay={3} size="w-72 h-72" position="bottom-10 -right-36" />
+            </div>
+            
+            {/* Mobile floating elements */}
+            <div className="lg:hidden">
+                <FloatingElement delay={0} size="w-32 h-32" position="top-10 -left-16" />
+                <FloatingElement delay={1} size="w-24 h-24" position="top-1/3 -right-12" />
+                <FloatingElement delay={2} size="w-28 h-28" position="bottom-1/4 left-1/4" />
+            </div>
+            
+            {/* Radial gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-radial from-purple-900/20 via-transparent to-transparent"></div>
+            
+            {/* Mobile header with hamburger menu */}
+            <header className="lg:hidden fixed top-0 left-0 right-0 bg-slate-800/90 backdrop-blur-xl border-b border-slate-700/50 z-50 px-4 py-3">
+                <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 bg-gradient-to-tr from-purple-500 to-blue-500 rounded-lg flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                            </svg>
+                        </div>
+                        <img src={whiteLogo} alt="Sarg Softech" className="h-6 w-auto object-contain" />
                     </div>
-                    <div className="text-sm text-gray-400 mt-10">&copy; 2025 Sarg Softech.</div>
+                    <button
+                        onClick={() => setSidebarOpen(!sidebarOpen)}
+                        className="p-2 rounded-lg bg-slate-700/50 text-slate-300 hover:text-white hover:bg-slate-600/50 transition-colors"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
                 </div>
+            </header>
+
+            {/* Mobile sidebar overlay */}
+            {sidebarOpen && (
+                <div 
+                    className="lg:hidden fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-40"
+                    onClick={() => setSidebarOpen(false)}
+                />
+            )}
+            
+            {/* Modern sidebar with dark theme and glass morphism */}
+            <aside className={`fixed left-0 top-0 h-full w-80 bg-slate-800/30 backdrop-blur-xl border-r border-slate-700/50 z-50 shadow-2xl transform transition-transform duration-300 ease-in-out ${
+                sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+            } lg:translate-x-0`}>
+                <div className="p-6 lg:p-8">
+                    {/* Close button for mobile */}
+                    <div className="lg:hidden flex justify-end mb-4">
+                        <button
+                            onClick={() => setSidebarOpen(false)}
+                            className="p-2 rounded-lg bg-slate-700/50 text-slate-300 hover:text-white hover:bg-slate-600/50 transition-colors"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <div className="flex items-center gap-4 mb-12">
+                        <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-tr from-purple-500 to-blue-500 rounded-xl flex items-center justify-center shadow-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 lg:h-6 lg:w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                            </svg>
+                        </div>
+                        <img src={whiteLogo} alt="Sarg Softech" className="h-6 lg:h-8 w-auto object-contain" />
+                    </div>
+                    
+                    <nav className="space-y-3">
+                        {[
+                            { id: 'dashboard', label: 'Dashboard', icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg> },
+                            { id: 'tasks', label: 'Tasks', icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg> },
+                            { id: 'users', label: 'Users', icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path></svg> },
+                            { id: 'settings', label: 'Settings', icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.82 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.82 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.82-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.82-3.31 2.37-2.37.996.608 2.22 1.34 2.572-1.065z"></path><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> }
+                        ].map((item) => (
+                            <button
+                                key={item.id}
+                                onClick={() => {
+                                    setActiveSection(item.id);
+                                    setSidebarOpen(false); // Close mobile sidebar when item is selected
+                                }}
+                                className={`w-full flex items-center gap-4 px-4 lg:px-6 py-3 lg:py-4 rounded-xl text-left transition-all duration-300 group ${
+                                    activeSection === item.id
+                                        ? 'bg-gradient-to-r from-purple-500/20 to-blue-500/20 text-white border border-purple-400/40 shadow-lg shadow-purple-500/20'
+                                        : 'text-slate-300 hover:text-white hover:bg-slate-700/50 hover:shadow-lg hover:shadow-slate-800/20 border border-transparent hover:border-slate-600/50'
+                                }`}
+                            >
+                                <div className={`transition-all duration-300 ${activeSection === item.id ? 'text-purple-300 scale-110' : 'group-hover:scale-110 group-hover:text-purple-300'}`}>
+                                    {item.icon}
+                                </div>
+                                <span className="font-medium text-sm lg:text-base">{item.label}</span>
+                                {activeSection === item.id && (
+                                    <div className="ml-auto w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+                                )}
+                            </button>
+                        ))}
+                    </nav>
+                </div>
+                
+                {/* Footer */}
+                <div className="absolute bottom-6 lg:bottom-8 left-6 lg:left-8 text-xs lg:text-sm text-slate-400">&copy; 2025 Sarg Softech.</div>
             </aside>
-            {/* Main Content */}
-            <main className="flex-1 min-w-0 p-6 sm:p-10 md:p-14 overflow-auto">
+            
+            {/* Main Content - responsive margins */}
+            <main className="lg:ml-80 flex-1 min-w-0 p-4 sm:p-6 lg:p-10 xl:p-14 overflow-auto relative z-10 pt-20 lg:pt-6">
                 {activeSection === 'dashboard' && (
                     <div id="dashboard-content">
                         <header className="flex items-center justify-between mb-8">
-                            <h1 className="text-3xl font-extrabold text-blue-800 drop-shadow">Admin Dashboard</h1>
+                            <h1 className="text-3xl font-extrabold text-purple-300">Admin Dashboard</h1>
                         </header>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
                             {/* Card 1 */}
-                            <div className="bg-white/40 backdrop-blur-lg p-6 rounded-2xl shadow-lg border border-white/30 flex items-center justify-between">
+                            <div className="bg-slate-800/40 backdrop-blur-xl p-6 rounded-2xl shadow-2xl border border-slate-700/50 hover:bg-slate-800/60 hover:border-slate-600/60 transition-all duration-300 flex items-center justify-between">
                                 <div>
-                                    <div className="text-sm font-medium text-gray-500">Total Applications</div>
-                                    <div className="text-3xl font-bold mt-1 text-gray-900">{applications.length}</div>
+                                    <div className="text-sm font-medium text-slate-400">Total Applications</div>
+                                    <div className="text-3xl font-bold mt-1 text-white">{applications.length}</div>
                                 </div>
-                                <div className="p-3 bg-blue-200 text-blue-700 rounded-full">
+                                <div className="p-3 bg-gradient-to-tr from-blue-500/20 to-purple-500/20 text-blue-300 rounded-xl border border-blue-400/30">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M17 16h.01" />
                                     </svg>
                                 </div>
                             </div>
                             {/* Card 2 */}
-                            <div className="bg-white/40 backdrop-blur-lg p-6 rounded-2xl shadow-lg border border-white/30 flex items-center justify-between">
+                            <div className="bg-slate-800/40 backdrop-blur-xl p-6 rounded-2xl shadow-2xl border border-slate-700/50 hover:bg-slate-800/60 hover:border-slate-600/60 transition-all duration-300 flex items-center justify-between">
                                 <div>
-                                    <div className="text-sm font-medium text-gray-500">New This Week</div>
-                                    <div className="text-3xl font-bold mt-1 text-gray-900">
+                                    <div className="text-sm font-medium text-slate-400">New This Week</div>
+                                    <div className="text-3xl font-bold mt-1 text-white">
                                         {applications.filter(app => new Date(app.date) >= new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)).length}
                                     </div>
                                 </div>
-                                <div className="p-3 bg-green-200 text-green-700 rounded-full">
+                                <div className="p-3 bg-gradient-to-tr from-emerald-500/20 to-teal-500/20 text-emerald-300 rounded-xl border border-emerald-400/30">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.5v15m7.5-7.5h-15" />
                                     </svg>
                                 </div>
                             </div>
                             {/* Card 3 */}
-                            <div className="bg-white/40 backdrop-blur-lg p-6 rounded-2xl shadow-lg border border-white/30 flex items-center justify-between">
+                            <div className="bg-slate-800/40 backdrop-blur-xl p-6 rounded-2xl shadow-2xl border border-slate-700/50 hover:bg-slate-800/60 hover:border-slate-600/60 transition-all duration-300 flex items-center justify-between">
                                 <div>
-                                    <div className="text-sm font-medium text-gray-500">Software Dev.</div>
-                                    <div className="text-3xl font-bold mt-1 text-gray-900">
+                                    <div className="text-sm font-medium text-slate-400">Software Dev.</div>
+                                    <div className="text-3xl font-bold mt-1 text-white">
                                         {applications.filter(app => app.domain === 'Software Development').length}
                                     </div>
                                 </div>
-                                <div className="p-3 bg-yellow-200 text-yellow-700 rounded-full">
+                                <div className="p-3 bg-gradient-to-tr from-amber-500/20 to-orange-500/20 text-amber-300 rounded-xl border border-amber-400/30">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
                                 </div>
                             </div>
                             {/* Card 4 */}
-                            <div className="bg-white/40 backdrop-blur-lg p-6 rounded-2xl shadow-lg border border-white/30 flex items-center justify-between">
+                            <div className="bg-slate-800/40 backdrop-blur-xl p-6 rounded-2xl shadow-2xl border border-slate-700/50 hover:bg-slate-800/60 hover:border-slate-600/60 transition-all duration-300 flex items-center justify-between">
                                 <div>
-                                    <div className="text-sm font-medium text-gray-500">UX/UI Design</div>
-                                    <div className="text-3xl font-bold mt-1 text-gray-900">
+                                    <div className="text-sm font-medium text-slate-400">UX/UI Design</div>
+                                    <div className="text-3xl font-bold mt-1 text-white">
                                         {applications.filter(app => app.domain === 'UX/UI Design').length}
                                     </div>
                                 </div>
-                                <div className="p-3 bg-purple-200 text-purple-700 rounded-full">
+                                <div className="p-3 bg-gradient-to-tr from-purple-500/20 to-pink-500/20 text-purple-300 rounded-xl border border-purple-400/30">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                                 </div>
                             </div>
                         </div>
-                        <div className="bg-white/40 backdrop-blur-lg p-6 rounded-2xl shadow-lg border border-white/30 overflow-x-auto">
-                            <h2 className="text-xl font-bold mb-6 text-blue-800">Recent Applications</h2>
+                        <div className="bg-slate-800/40 backdrop-blur-xl p-4 lg:p-6 rounded-2xl shadow-2xl border border-slate-700/50 overflow-x-auto">
+                            <h2 className="text-lg lg:text-xl font-bold mb-4 lg:mb-6 text-purple-300">Recent Applications</h2>
                             <div className="overflow-x-auto">
-                                <table className="min-w-full divide-y divide-gray-200">
-                                    <thead className="bg-white/60">
+                                <table className="min-w-full divide-y divide-slate-600/50">
+                                    <thead className="bg-slate-700/30">
                                         <tr>
-                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Domain</th>
-                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                                            <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                            <th className="px-3 lg:px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">ID</th>
+                                            <th className="px-3 lg:px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Name</th>
+                                            <th className="px-3 lg:px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Domain</th>
+                                            <th className="px-3 lg:px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Status</th>
+                                            <th className="px-3 lg:px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Date</th>
+                                            <th className="px-3 lg:px-6 py-3 text-right text-xs font-medium text-slate-300 uppercase tracking-wider">Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody className="bg-white/30 divide-y divide-gray-200">
+                                    <tbody className="bg-slate-800/20 divide-y divide-slate-600/30">
                                         {applications.map(app => (
-                                            <tr key={app.id} className="hover:bg-blue-50/40 transition-colors duration-200">
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{app.id}</td>
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{app.name}</td>
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{app.domain}</td>
-                                                <td className="px-6 py-4 whitespace-nowrap"><span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(app.status)}`}>{app.status}</span></td>
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{app.date}</td>
-                                                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                    <button onClick={() => showDetails(app.id)} className="text-blue-500 hover:text-blue-700 transition-colors duration-200">View Details</button>
+                                            <tr key={app.id} className="hover:bg-slate-700/30 transition-colors duration-200">
+                                                <td className="px-3 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-100">{app.id}</td>
+                                                <td className="px-3 lg:px-6 py-4 whitespace-nowrap text-sm text-slate-300">{app.name}</td>
+                                                <td className="px-3 lg:px-6 py-4 whitespace-nowrap text-sm text-slate-300">{app.domain}</td>
+                                                <td className="px-3 lg:px-6 py-4 whitespace-nowrap"><span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(app.status)}`}>{app.status}</span></td>
+                                                <td className="px-3 lg:px-6 py-4 whitespace-nowrap text-sm text-slate-300">{app.date}</td>
+                                                <td className="px-3 lg:px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                    <button onClick={() => showDetails(app.id)} className="text-purple-400 hover:text-purple-300 transition-colors duration-200 hover:underline">View Details</button>
                                                 </td>
                                             </tr>
                                         ))}
@@ -256,30 +353,30 @@ const Admin = () => {
                 )}
                 {activeSection === 'tasks' && (
                     <div id="tasks-content">
-                        <header className="flex items-center justify-between mb-8">
-                            <h1 className="text-3xl font-extrabold text-blue-800 drop-shadow">Intern Tasks</h1>
-                            <button onClick={() => setShowAddTaskModal(true)} className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200">Add New Task</button>
+                        <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 lg:mb-8 space-y-4 sm:space-y-0">
+                            <h1 className="text-2xl lg:text-3xl font-extrabold text-blue-800 drop-shadow">Intern Tasks</h1>
+                            <button onClick={() => setShowAddTaskModal(true)} className="px-4 lg:px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 text-sm lg:text-base">Add New Task</button>
                         </header>
-                        <div className="bg-white/40 backdrop-blur-lg p-6 rounded-2xl shadow-lg border border-white/30 overflow-x-auto">
+                        <div className="bg-white/40 backdrop-blur-lg p-4 lg:p-6 rounded-2xl shadow-lg border border-white/30 overflow-x-auto">
                             <div className="overflow-x-auto">
                                 <table className="min-w-full divide-y divide-gray-200">
                                     <thead className="bg-white/60">
                                         <tr>
-                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Task Title</th>
-                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Assigned To</th>
-                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Due Date</th>
-                                            <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                            <th className="px-3 lg:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Task Title</th>
+                                            <th className="px-3 lg:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Assigned To</th>
+                                            <th className="px-3 lg:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                            <th className="px-3 lg:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Due Date</th>
+                                            <th className="px-3 lg:px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white/30 divide-y divide-gray-200">
                                         {tasks.map(task => (
                                             <tr key={task.id} className="hover:bg-blue-50/40 transition-colors duration-200">
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{task.title}</td>
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{task.assignee}</td>
-                                                <td className="px-6 py-4 whitespace-nowrap"><span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getTaskStatusColor(task.status)}`}>{task.status}</span></td>
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{task.dueDate}</td>
-                                                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                <td className="px-3 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{task.title}</td>
+                                                <td className="px-3 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-500">{task.assignee}</td>
+                                                <td className="px-3 lg:px-6 py-4 whitespace-nowrap"><span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getTaskStatusColor(task.status)}`}>{task.status}</span></td>
+                                                <td className="px-3 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-500">{task.dueDate}</td>
+                                                <td className="px-3 lg:px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                     <button onClick={() => showCustomAlert(`Viewing task: ${task.title}`)} className="text-blue-500 hover:text-blue-700 transition-colors duration-200">View</button>
                                                     <button onClick={() => showCustomAlert(`Deleting task: ${task.title}`)} className="text-red-500 hover:text-red-700 transition-colors duration-200 ml-2">Delete</button>
                                                 </td>

@@ -10,23 +10,38 @@ import card3Image from '../assets/card 3.png';
 
 
 const Home = () => (
-  <div className="min-h-screen flex flex-col bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 font-sans text-gray-800 antialiased">
+  <div className="min-h-screen flex flex-col bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 font-sans text-gray-800 antialiased relative">
     <Header />
+    
+    {/* Floating Admin Access Button */}
+    <Link 
+      to="/admin-login"
+      className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-50 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white p-3 sm:p-4 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 group"
+      title="Admin Portal Access"
+    >
+      <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+      </svg>
+      <span className="absolute right-14 sm:right-16 top-1/2 transform -translate-y-1/2 bg-black text-white text-xs px-2 sm:px-3 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+        Admin Portal
+      </span>
+    </Link>
+    
     <main className="flex-grow">
       {/* Hero Section with glassmorphism */}
-      <section className="relative flex items-center justify-center py-24 px-0 overflow-hidden">
+      <section className="relative flex items-center justify-center py-16 sm:py-20 lg:py-24 px-4 sm:px-6 overflow-hidden">
         <div className="w-full relative">
           <div className="absolute inset-0 bg-gradient-to-r from-purple-500/60 via-blue-400/60 to-pink-400/60 blur-2xl opacity-60 -z-10" />
-          <div className="backdrop-blur-lg bg-white/40 shadow-md w-full border-t border-b border-white/30 flex flex-col items-center text-center px-0 py-16 relative z-10">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-black leading-tight mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-700 via-blue-700 to-pink-600 drop-shadow-lg animate-fade-in w-full">
+          <div className="backdrop-blur-lg bg-white/40 shadow-md w-full border-t border-b border-white/30 flex flex-col items-center text-center px-4 sm:px-8 py-12 sm:py-16 relative z-10">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight mb-4 sm:mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-700 via-blue-700 to-pink-600 drop-shadow-lg animate-fade-in w-full px-2">
               A Launchpad to Your Tech Career
             </h1>
-            <p className="text-lg md:text-xl font-light max-w-2xl mx-auto mb-10 text-gray-700/90 animate-fade-in delay-200 w-full">
+            <p className="text-base sm:text-lg md:text-xl font-light max-w-2xl mx-auto mb-8 sm:mb-10 text-gray-700/90 animate-fade-in delay-200 w-full px-4">
               Gain hands-on experience, learn from industry experts, and build a portfolio that will set you apart. Our internships are designed to prepare you for the real world.
             </p>
             <Link
-              to="/register"
-              className="inline-block px-8 py-3 text-lg font-extrabold text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full shadow-xl transition-all duration-300 transform hover:scale-110 hover:shadow-2xl hover:bg-gradient-to-l focus:outline-none focus:ring-4 focus:ring-pink-300/60 mt-2"
+              to="/login"
+              className="inline-block px-6 sm:px-8 py-3 text-base sm:text-lg font-extrabold text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full shadow-xl transition-all duration-300 transform hover:scale-110 hover:shadow-2xl hover:bg-gradient-to-l focus:outline-none focus:ring-4 focus:ring-pink-300/60 mt-2"
             >
               Apply Now
             </Link>
@@ -35,7 +50,7 @@ const Home = () => (
       </section>
 
       {/* What We Offer Section */}
-      <section className="py-24 px-6 bg-white/80 relative overflow-hidden">
+      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 bg-white/80 relative overflow-hidden">
         {/* Background Image for What We Offer */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
@@ -44,10 +59,10 @@ const Home = () => (
           }}
         />
         <div className="container mx-auto relative z-10">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-16 text-gray-900 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-center mb-12 sm:mb-16 text-gray-900 tracking-tight">
             What We Offer
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             <OfferCard
               icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15M12 4.5a3 3 0 013 3v2.25M12 4.5a3 3 0 00-3 3v2.25M12 19.5a3 3 0 01-3-3V14.25M12 19.5a3 3 0 003-3V14.25" /></svg>}
               title="Expert Mentorship"
@@ -71,31 +86,31 @@ const Home = () => (
       </section>
 
       {/* Internship Domains Section */}
-      <section className="py-24 px-6 bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100">
+      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100">
         <div className="container mx-auto">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-16 text-gray-900 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-center mb-12 sm:mb-16 text-gray-900 tracking-tight">
             Internship Domains
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             <DomainCard
-              title="Software Development"
-              description="Build and maintain applications using modern programming languages and frameworks."
-              icon={<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="Software Dev" className="w-10 h-10 mb-3 mx-auto" />}
+              title="Web Development"
+              description="Build modern, responsive websites and web applications using cutting-edge technologies and frameworks."
+              icon={<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="Web Development" className="w-10 h-10 mb-3 mx-auto" />}
             />
             <DomainCard
-              title="Data Science"
-              description="Analyze large datasets to extract valuable insights and drive business decisions."
-              icon={<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Data Science" className="w-10 h-10 mb-3 mx-auto" />}
+              title="Mobile App Development"
+              description="Create innovative mobile applications for iOS and Android platforms using native and cross-platform technologies."
+              icon={<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Mobile App Development" className="w-10 h-10 mb-3 mx-auto" />}
             />
             <DomainCard
               title="UX/UI Design"
-              description="Design intuitive and engaging user interfaces and experiences for our products."
+              description="Design intuitive and engaging user interfaces and experiences that delight users and drive engagement."
               icon={<img src="https://img.icons8.com/color/96/figma--v1.png" alt="UX/UI Design" className="w-10 h-10 mb-3 mx-auto" />}
             />
             <DomainCard
-              title="Marketing"
-              description="Help create and execute marketing strategies to grow our brand and reach a wider audience."
-              icon={<img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/mailchimp.svg" alt="Marketing" className="w-10 h-10 mb-3 mx-auto bg-yellow-300 rounded-full p-1" style={{background:'#fde68a'}} />}
+              title="Software Development"
+              description="Build and maintain applications using modern programming languages and frameworks."
+              icon={<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="Software Development" className="w-10 h-10 mb-3 mx-auto" />}
             />
             <DomainCard
               title="Project Management"
@@ -105,7 +120,7 @@ const Home = () => (
             <DomainCard
               title="Human Resources"
               description="Assist in talent acquisition, employee relations, and other HR functions."
-              icon={<img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/workplace.svg" alt="Human Resources" className="w-10 h-10 mb-3 mx-auto bg-pink-200 rounded-full p-1" style={{background:'#fbcfe8'}} />}
+              icon={<img src="https://img.icons8.com/color/96/businesswoman.png" alt="Human Resources" className="w-10 h-10 mb-3 mx-auto" />}
             />
           </div>
         </div>
