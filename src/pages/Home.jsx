@@ -11,22 +11,8 @@ import card3Image from '../assets/card 3.png';
 
 const Home = () => (
   <div className="min-h-screen flex flex-col bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 font-sans text-gray-800 antialiased relative">
-    <Header />
-    
-    {/* Floating Admin Access Button */}
-    <Link 
-      to="/admin-login"
-      className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-50 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white p-3 sm:p-4 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 group"
-      title="Admin Portal Access"
-    >
-      <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-      </svg>
-      <span className="absolute right-14 sm:right-16 top-1/2 transform -translate-y-1/2 bg-black text-white text-xs px-2 sm:px-3 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-        Admin Portal
-      </span>
-    </Link>
-    
+  <Header />
+
     <main className="flex-grow">
       {/* Hero Section with glassmorphism */}
       <section className="relative flex items-center justify-center py-16 sm:py-20 lg:py-24 px-4 sm:px-6 overflow-hidden">

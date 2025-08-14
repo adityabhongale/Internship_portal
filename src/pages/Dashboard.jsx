@@ -272,7 +272,7 @@ const Dashboard = () => {
             )}
 
             {/* Modern sidebar with dark theme and glass morphism */}
-            <aside className={`sidebar fixed left-0 top-0 h-full w-80 bg-slate-800/30 backdrop-blur-xl border-r border-slate-700/50 z-50 shadow-2xl transform transition-transform duration-300 ease-in-out ${
+            <aside className={`fixed left-0 top-0 h-full w-52 sm:w-64 lg:w-80 bg-slate-800/30 backdrop-blur-xl border-r border-slate-700/50 z-50 shadow-2xl transform transition-transform duration-300 ease-in-out ${
                 sidebarOpen ? 'translate-x-0' : '-translate-x-full'
             } lg:translate-x-0`}>
                 <div className="p-6 lg:p-8">
@@ -446,15 +446,6 @@ const Dashboard = () => {
                     <section id="tasks-content" className="w-full max-w-7xl mx-auto">
                         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
                             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-purple-300 tracking-tight">Your Tasks</h2>
-                            <button
-                                onClick={() => setShowAddTaskModal(true)}
-                                className="px-4 lg:px-6 py-2 lg:py-3 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white rounded-lg font-medium transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-purple-500/20"
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 lg:h-5 lg:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
-                                </svg>
-                                <span className="text-sm lg:text-base">Add New Task</span>
-                            </button>
                         </div>
                         <Card icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>}>
                             <ul className="space-y-4">

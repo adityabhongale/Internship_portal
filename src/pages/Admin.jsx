@@ -199,7 +199,7 @@ const Admin = () => {
             )}
             
             {/* Modern sidebar with dark theme and glass morphism */}
-            <aside className={`fixed left-0 top-0 h-full w-80 bg-slate-800/30 backdrop-blur-xl border-r border-slate-700/50 z-50 shadow-2xl transform transition-transform duration-300 ease-in-out ${
+            <aside className={`fixed left-0 top-0 h-full w-52 sm:w-64 lg:w-80 bg-slate-800/30 backdrop-blur-xl border-r border-slate-700/50 z-50 shadow-2xl transform transition-transform duration-300 ease-in-out ${
                 sidebarOpen ? 'translate-x-0' : '-translate-x-full'
             } lg:translate-x-0`}>
                 <div className="p-6 lg:p-8">
@@ -256,6 +256,15 @@ const Admin = () => {
                 </div>
                 
                 {/* Footer */}
+                <button
+                    className="absolute bottom-16 lg:bottom-20 left-6 lg:left-8 w-[calc(100%-3rem)] py-3 px-4 rounded-xl bg-slate-800/40 backdrop-blur-xl text-purple-300 border border-purple-400/40 hover:border-purple-400 font-semibold shadow-lg transition-all duration-300"
+                    onClick={() => {
+                        // logic here
+                        alert('Logged out!');
+                    }}
+                >
+                    Logout
+                </button>
                 <div className="absolute bottom-6 lg:bottom-8 left-6 lg:left-8 text-xs lg:text-sm text-slate-400">&copy; 2025 Sarg Softech.</div>
             </aside>
             
@@ -357,28 +366,29 @@ const Admin = () => {
                             <h1 className="text-2xl lg:text-3xl font-extrabold text-blue-800 drop-shadow">Intern Tasks</h1>
                             <button onClick={() => setShowAddTaskModal(true)} className="px-4 lg:px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 text-sm lg:text-base">Add New Task</button>
                         </header>
-                        <div className="bg-white/40 backdrop-blur-lg p-4 lg:p-6 rounded-2xl shadow-lg border border-white/30 overflow-x-auto">
+                        <div className="bg-slate-800/40 backdrop-blur-xl p-6 rounded-2xl shadow-2xl border border-slate-700/50 hover:bg-slate-800/60 hover:border-slate-600/60 transition-all duration-300 flex flex-col gap-6">
+                            <h2 className="text-lg lg:text-xl font-bold text-purple-300">Tasks List</h2>
                             <div className="overflow-x-auto">
-                                <table className="min-w-full divide-y divide-gray-200">
-                                    <thead className="bg-white/60">
+                                <table className="min-w-full divide-y divide-slate-600/50">
+                                    <thead className="bg-slate-700/30">
                                         <tr>
-                                            <th className="px-3 lg:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Task Title</th>
-                                            <th className="px-3 lg:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Assigned To</th>
-                                            <th className="px-3 lg:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                            <th className="px-3 lg:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Due Date</th>
-                                            <th className="px-3 lg:px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                            <th className="px-3 lg:px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Task Title</th>
+                                            <th className="px-3 lg:px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Assigned To</th>
+                                            <th className="px-3 lg:px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Status</th>
+                                            <th className="px-3 lg:px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Due Date</th>
+                                            <th className="px-3 lg:px-6 py-3 text-right text-xs font-medium text-slate-300 uppercase tracking-wider">Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody className="bg-white/30 divide-y divide-gray-200">
+                                    <tbody className="bg-slate-800/20 divide-y divide-slate-600/30">
                                         {tasks.map(task => (
-                                            <tr key={task.id} className="hover:bg-blue-50/40 transition-colors duration-200">
-                                                <td className="px-3 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{task.title}</td>
-                                                <td className="px-3 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-500">{task.assignee}</td>
+                                            <tr key={task.id} className="hover:bg-slate-700/30 transition-colors duration-200">
+                                                <td className="px-3 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-100">{task.title}</td>
+                                                <td className="px-3 lg:px-6 py-4 whitespace-nowrap text-sm text-slate-300">{task.assignee}</td>
                                                 <td className="px-3 lg:px-6 py-4 whitespace-nowrap"><span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getTaskStatusColor(task.status)}`}>{task.status}</span></td>
-                                                <td className="px-3 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-500">{task.dueDate}</td>
+                                                <td className="px-3 lg:px-6 py-4 whitespace-nowrap text-sm text-slate-300">{task.dueDate}</td>
                                                 <td className="px-3 lg:px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                    <button onClick={() => showCustomAlert(`Viewing task: ${task.title}`)} className="text-blue-500 hover:text-blue-700 transition-colors duration-200">View</button>
-                                                    <button onClick={() => showCustomAlert(`Deleting task: ${task.title}`)} className="text-red-500 hover:text-red-700 transition-colors duration-200 ml-2">Delete</button>
+                                                    <button onClick={() => showCustomAlert(`Viewing task: ${task.title}`)} className="text-purple-400 hover:text-purple-300 transition-colors duration-200 hover:underline">View</button>
+                                                    <button onClick={() => showCustomAlert(`Deleting task: ${task.title}`)} className="text-red-400 hover:text-red-500 transition-colors duration-200 ml-2">Delete</button>
                                                 </td>
                                             </tr>
                                         ))}
@@ -431,30 +441,30 @@ const Admin = () => {
                 </div>
             )}
             {showAddTaskModal && (
-                <div className="modal fixed inset-0 bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 bg-opacity-80 backdrop-blur-lg flex items-center justify-center z-50">
-                    <div className="relative mx-auto p-8 border border-white/30 w-11/12 md:w-2/3 lg:w-1/2 shadow-2xl rounded-2xl bg-white/60 backdrop-blur-lg">
-                        <h3 className="text-2xl font-bold mb-4 text-blue-800 drop-shadow">Add New Task</h3>
-                        <form onSubmit={handleAddTask} className="space-y-4 text-left text-sm text-gray-700">
+                <div className="modal fixed inset-0 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 bg-opacity-95 backdrop-blur-xl flex items-center justify-center z-50">
+                    <div className="relative mx-auto p-8 border border-purple-700/60 w-11/12 md:w-2/3 lg:w-1/2 shadow-2xl shadow-purple-900/40 rounded-2xl bg-slate-900/90 backdrop-blur-xl">
+                        <h3 className="text-2xl font-bold mb-4 text-purple-300 drop-shadow">Add New Task</h3>
+                        <form onSubmit={handleAddTask} className="space-y-4 text-left text-sm text-slate-200">
                             <div className="input-group">
-                                <label htmlFor="task-title" className="block font-medium text-gray-700">Task Title</label>
-                                <input type="text" id="task-title" name="title" className="mt-1 block w-full rounded-lg border border-gray-200 px-4 py-2 focus:ring-2 focus:ring-blue-200 outline-none" required />
+                                <label htmlFor="task-title" className="block font-medium text-purple-300">Task Title</label>
+                                <input type="text" id="task-title" name="title" className="mt-1 block w-full rounded-lg border border-purple-700 bg-slate-800/80 px-4 py-2 text-purple-200 focus:ring-2 focus:ring-purple-500 focus:border-purple-400 outline-none placeholder:text-purple-400" required />
                             </div>
                             <div className="input-group">
-                                <label htmlFor="task-assignee" className="block font-medium text-gray-700">Assign to Intern</label>
-                                <select id="task-assignee" name="assignee" className="mt-1 block w-full rounded-lg border border-gray-200 px-4 py-2 focus:ring-2 focus:ring-blue-200 outline-none" required>
-                                    <option value="" disabled selected>Select an intern</option>
+                                <label htmlFor="task-assignee" className="block font-medium text-purple-300">Assign to Intern</label>
+                                <select id="task-assignee" name="assignee" className="mt-1 block w-full rounded-lg border border-purple-700 bg-slate-800/80 px-4 py-2 text-purple-200 focus:ring-2 focus:ring-purple-500 focus:border-purple-400 outline-none" required>
+                                    <option value="" disabled selected className="text-slate-400">Select an intern</option>
                                     {applications.map(app => (
-                                        <option key={app.id} value={app.name}>{app.name}</option>
+                                        <option key={app.id} value={app.name} className="text-slate-900">{app.name}</option>
                                     ))}
                                 </select>
                             </div>
                             <div className="input-group">
-                                <label htmlFor="task-due-date" className="block font-medium text-gray-700">Due Date</label>
-                                <input type="date" id="task-due-date" name="dueDate" className="mt-1 block w-full rounded-lg border border-gray-200 px-4 py-2 focus:ring-2 focus:ring-blue-200 outline-none" required />
+                                <label htmlFor="task-due-date" className="block font-medium text-purple-300">Due Date</label>
+                                <input type="date" id="task-due-date" name="dueDate" className="mt-1 block w-full rounded-lg border border-purple-700 bg-slate-800/80 px-4 py-2 text-purple-200 focus:ring-2 focus:ring-purple-500 focus:border-purple-400 outline-none placeholder:text-purple-400" required />
                             </div>
                             <div className="flex justify-end space-x-4 mt-6">
-                                <button type="button" onClick={() => setShowAddTaskModal(false)} className="px-6 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold">Cancel</button>
-                                <button type="submit" className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold">Save Task</button>
+                                <button type="button" onClick={() => setShowAddTaskModal(false)} className="px-6 py-2 rounded-lg bg-slate-800 hover:bg-purple-700 text-purple-200 font-semibold">Cancel</button>
+                                <button type="submit" className="px-6 py-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white rounded-lg font-semibold shadow-lg">Save Task</button>
                             </div>
                         </form>
                     </div>

@@ -17,35 +17,20 @@ const Header = () => {
     return (
         <header className="bg-white shadow-sm sticky top-0 z-50">
             <nav className="container mx-auto px-4 sm:px-6 py-4">
-                <div className="flex items-center justify-between">
-                    <Link to="/" className="text-xl sm:text-2xl font-bold text-indigo-700 flex items-center">
-                        <img 
-                            src={logo} 
-                            alt="Company Logo" 
-                            className="h-8 sm:h-10 w-auto mr-2"
-                        />
-                    </Link>
+                <div className="flex items-center justify-between w-full">
+                    <div className="flex-shrink-0">
+                        <Link to="/" className="text-xl sm:text-2xl font-bold text-indigo-700 flex items-center">
+                            <img 
+                                src={logo} 
+                                alt="Company Logo" 
+                                className="h-8 sm:h-10 w-auto mr-2"
+                            />
+                        </Link>
+                    </div>
                     
-                    {/* Mobile menu button */}
-                    <button
-                        onClick={toggleMobileMenu}
-                        className="lg:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-indigo-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
-                        aria-expanded="false"
-                    >
-                        <span className="sr-only">Open main menu</span>
-                        {!isMobileMenuOpen ? (
-                            <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-                            </svg>
-                        ) : (
-                            <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        )}
-                    </button>
-
-                    {/* Desktop navigation */}
-                    <ul className="hidden lg:flex items-center space-x-6">
+                    <div className="flex items-center">
+                        {/* Desktop navigation */}
+                        <ul className="hidden lg:flex items-center space-x-6">
                         <li>
                             <a href="https://sargsoftech.com/Main" target="_blank" rel="noopener noreferrer" className={getNavLinkClass('/home')}>Home</a>
                         </li>
@@ -64,7 +49,36 @@ const Header = () => {
                         <li>
                            <a href="https://sargsoftech.com/Contact" target="_blank" rel="noopener noreferrer" className={getNavLinkClass('/contact')}>Contact Us</a>
                         </li>
+                        <li>
+                            <Link to="/login" className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-full text-white bg-gradient-to-r from-violet-500 to-pink-500 hover:from-violet-600 hover:to-pink-600 transition-all duration-200 shadow-sm hover:shadow">
+                                Login
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/register" className="inline-flex items-center justify-center px-5 py-2 text-sm font-medium rounded-full text-white bg-gradient-to-r from-violet-500 to-pink-500 hover:from-violet-600 hover:to-pink-600 transition-all duration-200 shadow-sm hover:shadow">
+                                Register
+                            </Link>
+                        </li>
                     </ul>
+                        
+                        {/* Mobile menu button */}
+                        <button
+                            onClick={toggleMobileMenu}
+                            className="lg:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-indigo-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                            aria-expanded="false"
+                        >
+                            <span className="sr-only">Open main menu</span>
+                            {!isMobileMenuOpen ? (
+                                <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                                </svg>
+                            ) : (
+                                <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            )}
+                        </button>
+                    </div>
                 </div>
 
                 {/* Mobile navigation menu */}
@@ -123,6 +137,22 @@ const Header = () => {
                             >
                                 Contact Us
                             </a>
+                            <div className="mt-6 space-y-3">
+                                <Link 
+                                    to="/login" 
+                                    className="block w-full px-3 py-2 text-center text-white bg-gradient-to-r from-violet-500 to-pink-500 hover:from-violet-600 hover:to-pink-600 text-base font-medium shadow-sm hover:shadow transition-all duration-200"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                    Login
+                                </Link>
+                                <Link 
+                                    to="/register" 
+                                    className="block w-full px-3 py-2 text-center text-white bg-gradient-to-r from-violet-500 to-pink-500 hover:from-violet-600 hover:to-pink-600 text-base font-medium shadow-sm hover:shadow transition-all duration-200"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                    Register
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 )}
