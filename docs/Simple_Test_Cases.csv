@@ -1,0 +1,64 @@
+Sr No,Test Case ID,Test Case Description,Pre-condition,Test Steps,Expected Result,Actual Result,Status,Priority,Assigned To,Browser,Comments
+1,TC_001,Verify user registration with valid details,User should be on registration page,"1. Enter valid name
+2. Enter valid email
+3. Enter valid password
+4. Select domain
+5. Upload resume
+6. Click Register",User should be registered successfully and redirected to dashboard,,Pending,High,Tester,Chrome,
+2,TC_002,Verify user registration with invalid email,User should be on registration page,"1. Enter valid name
+2. Enter invalid email format
+3. Enter valid password
+4. Click Register",Error message should be displayed for invalid email,,Pending,Medium,Tester,Chrome,
+3,TC_003,Verify login with valid credentials,User should be registered and on login page,"1. Enter valid email
+2. Enter valid password
+3. Click Login button",User should be logged in and redirected to dashboard,,Pending,High,Tester,Chrome,
+4,TC_004,Verify login with invalid credentials,User should be on login page,"1. Enter invalid email
+2. Enter any password
+3. Click Login button",Error message should be displayed,,Pending,Medium,Tester,Chrome,
+5,TC_005,Verify dashboard loading after login,User should be logged in,"1. Navigate to dashboard
+2. Check all sections load",Dashboard should display with all sections visible,,Pending,High,Tester,Chrome,
+6,TC_006,Verify task creation by admin,Admin should be logged in,"1. Navigate to tasks section
+2. Click Add New Task
+3. Fill task details
+4. Assign to intern
+5. Save task",Task should be created and assigned successfully,,Pending,High,Tester,Chrome,
+7,TC_007,Verify application status update by admin,Admin should be logged in,"1. Navigate to applications
+2. Select an application
+3. Change status to Accepted
+4. Save changes",Application status should be updated,,Pending,High,Tester,Chrome,
+8,TC_008,Verify file upload functionality,User should be on profile/registration page,"1. Click upload resume button
+2. Select valid PDF file
+3. Upload file",File should be uploaded successfully,,Pending,Medium,Tester,Chrome,
+9,TC_009,Verify mobile responsiveness,Application should be accessible,"1. Open on mobile device
+2. Test navigation
+3. Test form filling
+4. Test button clicks",All features should work on mobile,,Pending,Medium,Tester,Mobile,
+10,TC_010,Verify admin dashboard statistics,Admin should be logged in,"1. Navigate to admin dashboard
+2. Check statistics cards
+3. Verify data accuracy",Statistics should display correct numbers,,Pending,Medium,Tester,Chrome,
+11,TC_011,Verify password validation,User should be on registration page,"1. Enter weak password (123)
+2. Try to register",Password validation error should be shown,,Pending,Medium,Tester,Chrome,
+12,TC_012,Verify header navigation,User should be on homepage,"1. Click each navigation link
+2. Verify page loads correctly",Each link should navigate to correct page,,Pending,Low,Tester,Chrome,
+13,TC_013,Verify admin access button,User should be on homepage,"1. Locate admin access button
+2. Click the button
+3. Enter admin credentials",Should navigate to admin login page,,Pending,Medium,Tester,Chrome,
+14,TC_014,Verify task status update by student,Student should be logged in with assigned tasks,"1. Navigate to tasks section
+2. Select a task
+3. Update status to In Progress
+4. Save changes",Task status should be updated,,Pending,Medium,Tester,Chrome,
+15,TC_015,Verify profile update functionality,User should be logged in,"1. Navigate to profile section
+2. Update personal information
+3. Save changes",Profile should be updated successfully,,Pending,Medium,Tester,Chrome,
+16,TC_016,Verify cross-browser compatibility,Application should be accessible,"1. Open in different browsers
+2. Test core functionality
+3. Check display consistency",Application should work in all major browsers,,Pending,Low,Tester,Multiple,
+17,TC_017,Verify logout functionality,User should be logged in,"1. Click logout button
+2. Verify session ends",User should be logged out and redirected to homepage,,Pending,Medium,Tester,Chrome,
+18,TC_018,Verify admin sidebar navigation,Admin should be logged in,"1. Click each sidebar menu item
+2. Verify sections load correctly",Each menu should navigate to correct section,,Pending,Medium,Tester,Chrome,
+19,TC_019,Verify form validation messages,User should be on any form page,"1. Submit form with empty fields
+2. Check validation messages",Appropriate validation messages should appear,,Pending,Medium,Tester,Chrome,
+20,TC_020,Verify application filtering in admin panel,Admin should be logged in with applications in system,"1. Navigate to applications section
+2. Apply different filters
+3. Verify results",Applications should be filtered correctly,,Pending,Low,Tester,Chrome,

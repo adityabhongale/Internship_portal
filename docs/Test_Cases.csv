@@ -1,0 +1,133 @@
+Test Case ID,Test Case Name,Module,Test Scenario,Test Steps,Expected Result,Actual Result,Status,Priority,Severity,Browser,Test Data,Pre-conditions,Post-conditions,Remarks
+TC_REG_001,Valid User Registration,Registration,User should be able to register with valid details,"1. Navigate to registration page
+2. Enter valid name: 'John Doe'
+3. Enter valid email: 'john.doe@university.edu'
+4. Enter valid password: 'Password123!'
+5. Enter valid phone: '+1234567890'
+6. Enter university: 'ABC University'
+7. Select domain: 'Software Development'
+8. Enter message: 'I am interested in software development'
+9. Upload resume (PDF)
+10. Click 'Register' button",User should be successfully registered and redirected to dashboard,,Not Executed,High,High,Chrome,"Name: John Doe, Email: john.doe@university.edu, Password: Password123!, Phone: +1234567890, University: ABC University, Domain: Software Development",User should not be already registered,User account created in database,
+TC_REG_002,Registration with Invalid Email,Registration,User should not be able to register with invalid email format,"1. Navigate to registration page
+2. Enter valid name: 'John Doe'
+3. Enter invalid email: 'invalid-email'
+4. Enter valid password: 'Password123!'
+5. Fill other required fields
+6. Click 'Register' button",System should show error message 'Please enter a valid email address',,Not Executed,Medium,Medium,Chrome,"Name: John Doe, Email: invalid-email, Password: Password123!",Registration page should be accessible,User should remain on registration page,
+TC_REG_003,Registration with Weak Password,Registration,User should not be able to register with weak password,"1. Navigate to registration page
+2. Enter valid name: 'John Doe'
+3. Enter valid email: 'john.doe@university.edu'
+4. Enter weak password: '123'
+5. Fill other required fields
+6. Click 'Register' button",System should show password strength error message,,Not Executed,Medium,Medium,Chrome,"Name: John Doe, Email: john.doe@university.edu, Password: 123",Registration page should be accessible,User should remain on registration page,
+TC_REG_004,Registration with Duplicate Email,Registration,User should not be able to register with already existing email,"1. Navigate to registration page
+2. Enter valid name: 'Jane Doe'
+3. Enter existing email: 'existing@university.edu'
+4. Enter valid password: 'Password123!'
+5. Fill other required fields
+6. Click 'Register' button",System should show error 'Email already exists',,Not Executed,High,Medium,Chrome,"Name: Jane Doe, Email: existing@university.edu, Password: Password123!",Email should already exist in database,User should remain on registration page,
+TC_REG_005,Registration with Empty Required Fields,Registration,User should not be able to register with empty required fields,"1. Navigate to registration page
+2. Leave name field empty
+3. Enter valid email: 'test@university.edu'
+4. Leave password field empty
+5. Click 'Register' button",System should show validation errors for empty required fields,,Not Executed,High,Medium,Chrome,"Name: (empty), Email: test@university.edu, Password: (empty)",Registration page should be accessible,User should remain on registration page with error messages,
+TC_LOG_001,Valid User Login,Login,User should be able to login with valid credentials,"1. Navigate to login page
+2. Enter valid email: 'john.doe@university.edu'
+3. Enter valid password: 'Password123!'
+4. Click 'Login' button",User should be successfully logged in and redirected to dashboard,,Not Executed,High,High,Chrome,"Email: john.doe@university.edu, Password: Password123!",User should be registered and account should be active,User should be logged in and session created,
+TC_LOG_002,Login with Invalid Email,Login,User should not be able to login with invalid email,"1. Navigate to login page
+2. Enter invalid email: 'invalid@university.edu'
+3. Enter valid password: 'Password123!'
+4. Click 'Login' button",System should show error 'Invalid email or password',,Not Executed,Medium,Medium,Chrome,"Email: invalid@university.edu, Password: Password123!",Login page should be accessible,User should remain on login page,
+TC_LOG_003,Login with Invalid Password,Login,User should not be able to login with wrong password,"1. Navigate to login page
+2. Enter valid email: 'john.doe@university.edu'
+3. Enter wrong password: 'WrongPassword'
+4. Click 'Login' button",System should show error 'Invalid email or password',,Not Executed,Medium,Medium,Chrome,"Email: john.doe@university.edu, Password: WrongPassword",User should be registered,User should remain on login page,
+TC_LOG_004,Login with Empty Fields,Login,User should not be able to login with empty credentials,"1. Navigate to login page
+2. Leave email field empty
+3. Leave password field empty
+4. Click 'Login' button",System should show validation errors for empty fields,,Not Executed,Medium,Low,Chrome,"Email: (empty), Password: (empty)",Login page should be accessible,User should remain on login page with error messages,
+TC_DASH_001,Student Dashboard Loading,Dashboard,Student dashboard should load correctly after login,"1. Login with valid student credentials
+2. Verify dashboard loads completely
+3. Check all sections are visible",Dashboard should display with all sections: Overview, Tasks, Profile,,Not Executed,High,High,Chrome,"Valid student credentials",User should be logged in as student,Dashboard should be fully loaded,
+TC_DASH_002,Application Status Display,Dashboard,Student should see their application status on dashboard,"1. Login as student
+2. Navigate to dashboard
+3. Check application status section",Current application status should be displayed (Pending/Accepted/Rejected),,Not Executed,High,Medium,Chrome,"Student with submitted application",Student should have submitted application,Application status should be visible,
+TC_DASH_003,Task List Display,Dashboard,Student should see assigned tasks on dashboard,"1. Login as student
+2. Navigate to Tasks section
+3. Verify task list loads",All assigned tasks should be displayed with status and due dates,,Not Executed,High,Medium,Chrome,"Student with assigned tasks",Student should have assigned tasks,Task list should be visible,
+TC_ADMIN_001,Admin Login,Admin Portal,Admin should be able to access admin portal,"1. Click admin access button
+2. Enter admin credentials
+3. Click 'Login' button",Admin should be logged in and see admin dashboard,,Not Executed,High,High,Chrome,"Valid admin credentials",Admin account should exist,Admin should access admin dashboard,
+TC_ADMIN_002,View All Applications,Admin Portal,Admin should see list of all applications,"1. Login as admin
+2. Navigate to Applications section
+3. Verify applications table loads",All submitted applications should be displayed in table format,,Not Executed,High,Medium,Chrome,"Admin credentials",Admin should be logged in,Applications list should be visible,
+TC_ADMIN_003,Update Application Status,Admin Portal,Admin should be able to update application status,"1. Login as admin
+2. Navigate to Applications
+3. Click 'View Details' on an application
+4. Change status to 'Accepted'
+5. Save changes",Application status should be updated and saved,,Not Executed,High,High,Chrome,"Admin credentials, existing application",Admin should be logged in and application should exist,Application status should be updated in database,
+TC_ADMIN_004,Create New Task,Admin Portal,Admin should be able to create new tasks for interns,"1. Login as admin
+2. Navigate to Tasks section
+3. Click 'Add New Task'
+4. Fill task details: Title, Assignee, Due Date
+5. Click 'Save Task'",New task should be created and assigned to selected intern,,Not Executed,High,Medium,Chrome,"Admin credentials, accepted intern",Admin should be logged in and intern should be accepted,Task should be created and visible to assigned intern,
+TC_FILE_001,Resume Upload - Valid File,File Upload,User should be able to upload valid resume file,"1. Navigate to registration/profile page
+2. Click 'Upload Resume' button
+3. Select valid PDF file (< 5MB)
+4. Click 'Upload'",File should be uploaded successfully and filename displayed,,Not Executed,High,Medium,Chrome,"Valid PDF file < 5MB",File upload section should be accessible,File should be saved and associated with user,
+TC_FILE_002,Resume Upload - Invalid File Type,File Upload,User should not be able to upload invalid file types,"1. Navigate to file upload section
+2. Select invalid file type (e.g., .txt)
+3. Click 'Upload'",System should show error 'Invalid file type. Only PDF and DOC files allowed',,Not Executed,Medium,Medium,Chrome,"Invalid file type (.txt)",File upload section should be accessible,User should see error message and file should not be uploaded,
+TC_FILE_003,Resume Upload - File Too Large,File Upload,User should not be able to upload files larger than 5MB,"1. Navigate to file upload section
+2. Select file larger than 5MB
+3. Click 'Upload'",System should show error 'File too large. Maximum size is 5MB',,Not Executed,Medium,Medium,Chrome,"File > 5MB",File upload section should be accessible,User should see error message and file should not be uploaded,
+TC_RESP_001,Mobile Responsive - Header,Responsive Design,Header should be responsive on mobile devices,"1. Open website on mobile device/browser
+2. Verify header displays correctly
+3. Check hamburger menu functionality",Header should adapt to mobile screen with hamburger menu,,Not Executed,Medium,Low,Mobile Browser,"Mobile device or browser developer tools",Website should be accessible,Header should be mobile-friendly,
+TC_RESP_002,Mobile Responsive - Dashboard,Responsive Design,Dashboard should be responsive on mobile devices,"1. Login on mobile device
+2. Navigate to dashboard
+3. Verify all sections are accessible",Dashboard should be fully functional on mobile with proper layout,,Not Executed,Medium,Low,Mobile Browser,"Mobile device, valid credentials",User should be logged in on mobile,Dashboard should be mobile-optimized,
+TC_RESP_003,Tablet Responsive - Admin Panel,Responsive Design,Admin panel should work correctly on tablet,"1. Login as admin on tablet
+2. Navigate through admin sections
+3. Test all functionality",All admin features should work properly on tablet with good layout,,Not Executed,Medium,Low,Tablet Browser,"Tablet device, admin credentials",Admin should be logged in on tablet,Admin panel should be tablet-optimized,
+TC_SEC_001,Password Security,Security,System should enforce strong password requirements,"1. Navigate to registration
+2. Try passwords: '123', 'abc', 'password'
+3. Verify each is rejected",System should reject weak passwords and show requirements,,Not Executed,High,High,Chrome,"Various weak passwords",Registration page should be accessible,Strong password policy should be enforced,
+TC_SEC_002,Session Security,Security,User session should expire after inactivity,"1. Login to system
+2. Leave browser idle for 30 minutes
+3. Try to access protected page",User should be redirected to login page due to session expiry,,Not Executed,Medium,Medium,Chrome,"Valid user credentials",User should be logged in,Session should be properly managed,
+TC_SEC_003,SQL Injection Prevention,Security,System should prevent SQL injection attacks,"1. Navigate to login page
+2. Enter SQL injection payload in email field: ' OR '1'='1
+3. Enter any password
+4. Click login",System should reject the input and show error or sanitize the input,,Not Executed,High,High,Chrome,"SQL injection payload",Login page should be accessible,System should be protected against SQL injection,
+TC_PERF_001,Page Load Time,Performance,Pages should load within acceptable time,"1. Clear browser cache
+2. Navigate to homepage
+3. Measure load time
+4. Repeat for other pages",All pages should load within 3 seconds on broadband connection,,Not Executed,Medium,Low,Chrome,"Broadband internet connection",Clear browser cache,Page load times should be recorded,
+TC_PERF_002,Large File Upload Performance,Performance,System should handle large file uploads efficiently,"1. Navigate to file upload
+2. Upload 4.5MB PDF file
+3. Monitor upload progress
+4. Verify completion",File should upload smoothly with progress indication and complete within reasonable time,,Not Executed,Medium,Low,Chrome,"4.5MB PDF file",File upload should be accessible,File should be uploaded successfully,
+TC_CROSS_001,Cross Browser - Chrome,Cross Browser,Application should work correctly in Chrome,"1. Open application in Chrome
+2. Test registration process
+3. Test login process
+4. Test dashboard functionality",All features should work correctly in Chrome browser,,Not Executed,High,Medium,Chrome,"Valid test data",Chrome browser should be installed,Application should be fully functional,
+TC_CROSS_002,Cross Browser - Firefox,Cross Browser,Application should work correctly in Firefox,"1. Open application in Firefox
+2. Test registration process
+3. Test login process
+4. Test dashboard functionality",All features should work correctly in Firefox browser,,Not Executed,High,Medium,Firefox,"Valid test data",Firefox browser should be installed,Application should be fully functional,
+TC_CROSS_003,Cross Browser - Safari,Cross Browser,Application should work correctly in Safari,"1. Open application in Safari
+2. Test registration process
+3. Test login process
+4. Test dashboard functionality",All features should work correctly in Safari browser,,Not Executed,Medium,Medium,Safari,"Valid test data",Safari browser should be available,Application should be fully functional,
+TC_API_001,Registration API,API Testing,Registration API should work correctly,"1. Send POST request to /api/register
+2. Include valid user data in JSON format
+3. Verify response",API should return 201 status with success message and user token,,Not Executed,High,High,Postman,"Valid JSON user data",API server should be running,User should be created in database,
+TC_API_002,Login API,API Testing,Login API should authenticate users correctly,"1. Send POST request to /api/login
+2. Include valid email and password
+3. Verify response",API should return 200 status with JWT token and user details,,Not Executed,High,High,Postman,"Valid email and password",User should exist in database,JWT token should be returned,
+TC_API_003,Get Applications API,API Testing,Admin should be able to fetch all applications via API,"1. Send GET request to /api/applications
+2. Include admin JWT token in headers
+3. Verify response",API should return 200 status with array of all applications,,Not Executed,High,Medium,Postman,"Valid admin JWT token",Admin should be authenticated,List of applications should be returned,
